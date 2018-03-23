@@ -1,11 +1,11 @@
 import tkinter as tk
 
-# import serial
+import serial
 import time
 states = []
 
 msg = 'abcde:'
-arm = serial.Serial('com9', 19200)
+arm = serial.Serial('com8', 19200)
 
 #START OBUCHENIE
 def start():
@@ -30,7 +30,13 @@ def thumb():
         msg = msg.replace('A', 'a')
     else:
         msg= msg.replace('a', 'A')
-    arm.write(msg.encode())
+
+    #ZABRANA NA thumb+MIDDLE
+    if msg != 'abCde:' :
+        arm.write(msg.encode())
+    else:
+        print('error')
+
 
 def  index():
     global msg
@@ -61,7 +67,7 @@ def baby():
     if msg[4] == 'E':
         msg = msg.replace('E', 'e')
     else:
-        msg = msg.replace('e', 'E')
+     msg = msg.replace('e', 'E')
     arm.write(msg.encode())
 
 
@@ -86,6 +92,7 @@ bezimen.place (x=250, y= 110)
 kutre = tk.Button (gui, text='BABY ', bg = 'lightpink', command= baby  ,height= 2, padx= 12)
 kutre.place (x=320, y= 110)
 
+# opravlenie
 clear = tk.Button (gui, text='START ', bg = 'cyan', command= start  ,height= 2, padx= 9  )
 clear.place (x=70, y=280)
 
