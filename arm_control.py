@@ -4,8 +4,8 @@ import serial
 import time
 states = []
 
-msg = 'abcde:'
-arm = serial.Serial('com8', 19200)
+msg = 'abcde\n'
+arm = serial.Serial('com8', 9600)
 
 #START OBUCHENIE
 def start():
