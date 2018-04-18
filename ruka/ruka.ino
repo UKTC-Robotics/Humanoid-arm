@@ -1,4 +1,3 @@
-
 #include <Servo.h>
 String stat;
 Servo prusti[5];  
@@ -16,13 +15,13 @@ void setup() {
     pos[i]=130;
     prusti[i].write(pos[i]);
   }
-  Serial.begin(19200);
+  Serial.begin(9600);
   Serial.println("I am ready!");
 }
 
 void loop() {
  if(Serial.available()>0){
-   stat=Serial.readStringUntil(':');
+   stat=Serial.readStringUntil('\n');
    switch(stat[0]){
      case 'A':pos[0]=130;break;
      case 'a':pos[0]=40;break;
